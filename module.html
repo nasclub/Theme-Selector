@@ -27,55 +27,71 @@
 	
 var themeConfig = [
 	{
-		"varName": "changeTheme_default",
+		"themeCookie": "default",
+		"themeName": "Default",
 		"tagName": "",
+		"selectClass": "theme-default",
 		"colorLight": "#ef5350",
 		"colorDark": "#c62828",
 		"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Default-min.jpg"
 	},
 	{
-		"varName": "changeTheme_purple",
+		"themeCookie": "purple",
+		"themeName": "Purple Cloud",
 		"tagName": "Purple Tag",
+		"selectClass": "theme-purple",
 		"colorLight": "#ab47bc",
 		"colorDark": "#7b1fa2",
 		"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Purple-min.jpg"
 	},
 	{
-		"varName": "changeTheme_blue",
+		"themeCookie": "blue",
+		"themeName": "Deep Sea",
 		"tagName": "Blue Tag",
+		"selectClass": "theme-blue",
 		"colorLight": "#42a5f5",
 		"colorDark": "#1976d2",
 		"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Blue-min.jpg"
 	},
 	{
-		"varName": "changeTheme_green",
+		"themeCookie": "green",
+		"themeName": "Forest Lover",
 		"tagName": "Green Tag",
+		"selectClass": "theme-green",
 		"colorLight": "#66bb6a",
 		"colorDark": "#388e3c",
 		"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Green-min.png"
 	},
 	{
-		"varName": "changeTheme_orange",
+		"themeCookie": "orange",
+		"themeName": "Burnt Sunset",
 		"tagName": "Orange Tag",
+		"selectClass": "theme-orange",
 		"colorLight": "#ffa726",
 		"colorDark": "#f57c00",
 		"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Orange-min.jpg"
 	},
 	{
-		"varName": "changeTheme_pink",
+		"themeCookie": "pink",
+		"themeName": "Pink Candy",
 		"tagName": "Pink Tag",
+		"selectClass": "theme-pink",
 		"colorLight": "#f48fb1",
 		"colorDark": "#d81b60",
 		"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Pink-min.jpg"
 	},
 	{
-		"varName": "changeTheme_black",
+		"themeCookie": "black",
+		"themeName": "Black Sky",
 		"tagName": "Black Tag",
+		"selectClass": "theme-black",
 		"colorLight": "#9e9e9e",
 		"colorDark": "#616161",
 		"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Black-min.png"
 	}
 ];
+	
+// End Configuration
 
 if (Cookies.get('currentTheme') == null) {
     Cookies.set('currentTheme', 'default', { expires: 180 });
@@ -84,50 +100,19 @@ if (Cookies.get('currentTheme') == null) {
 $('#theme-select').siblings('style').attr('id', 'csstheme');
 var themeTemplate = $('#csstheme').html();
 
-var changeTheme_default =
-        themeTemplate
-            .replace(/color1/g, '#ef5350')
-            .replace(/color2/g, '#c62828')
-            .replace(/color3/g, '#c62828')
-            .replace(/background_url/g, 'https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Default-min.jpg');
-
 var changeTheme = function() {
-    switch (Cookies.get('currentTheme')) {
-        case 'default':
-            $('#csstheme').html(changeTheme_default);
-            $('#theme-select .theme').removeClass('active');
-            $('#theme-select .theme.theme-default').addClass('active');
-            break;
-        case 'purple':
-            $('#csstheme').html(changeTheme_purple);
-            $('#theme-select .theme').removeClass('active');
-            $('#theme-select .theme.theme-purple').addClass('active');
-            break;
-        case 'blue':
-            $('#csstheme').html(changeTheme_blue);
-            $('#theme-select .theme').removeClass('active');
-            $('#theme-select .theme.theme-blue').addClass('active');
-            break;
-        case 'green':
-            $('#csstheme').html(changeTheme_green);
-            $('#theme-select .theme').removeClass('active');
-            $('#theme-select .theme.theme-green').addClass('active');
-            break;
-        case 'orange':
-            $('#csstheme').html(changeTheme_orange);
-            $('#theme-select .theme').removeClass('active');
-            $('#theme-select .theme.theme-orange').addClass('active');
-            break;
-        case 'pink':
-            $('#csstheme').html(changeTheme_pink);
-            $('#theme-select .theme').removeClass('active');
-            $('#theme-select .theme.theme-pink').addClass('active');
-            break;
-        case 'black':
-            $('#csstheme').html(changeTheme_black);
-            $('#theme-select .theme').removeClass('active');
-            $('#theme-select .theme.theme-black').addClass('active');
-    }
+	for (i = 0; i < themeConfig.length; i++;) {
+		if (Cookies.get('currentTheme') == themeConfig[i].themeCookie) {
+			$('#csstheme').html(
+				themeTemplate
+				.replace(/color1/g, themeConfig[i].colorLight)
+				.replace(/color2/g, themeConfig[i].colorDark)
+				.replace(/background_url/g, themeConfig[i].background);
+			);
+			$('#theme-select .theme').removeClass('active');
+			$('#theme-select .theme.' + themeConfig[i].selectClass).addClass('active');
+		}
+	}
 };
 
 var url = "/api/v1/api.php";
@@ -173,82 +158,23 @@ $.post(url, JSON.stringify(user_info), function(response) {
                         changeTheme();
                     }
                 });
-                
-                $.each(response.result, function(i, tag) {
-                    switch (tag) {
-                        case 'Purple Tag':
-                            themesTotal = themesTotal + 1;
-                            $('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme theme-purple"><div class="theme-name">Purple Cloud</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
-                            $('#theme-select .theme.theme-purple').click(function() {
-                                if (Cookies.get('currentTheme') == 'purple') {
-                                    return;
-                                } else {
-                                    Cookies.set('currentTheme', 'purple', { expires: 180 });
-                                    changeTheme();
-                                }
-                            });
-                            break;
-                        case 'Blue Tag':
-                            themesTotal = themesTotal + 1;
-                            $('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme theme-blue"><div class="theme-name">Deep Sea</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
-                            $('#theme-select .theme.theme-blue').click(function() {
-                                if (Cookies.get('currentTheme') == 'blue') {
-                                    return;
-                                } else {
-                                    Cookies.set('currentTheme', 'blue', { expires: 180 });
-                                    changeTheme();
-                                }
-                            });
-                            break;
-                        case 'Green Tag':
-                            themesTotal = themesTotal + 1;
-                            $('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme theme-green"><div class="theme-name">Forest Lover</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
-                            $('#theme-select .theme.theme-green').click(function() {
-                                if (Cookies.get('currentTheme') == 'green') {
-                                    return;
-                                } else {
-                                    Cookies.set('currentTheme', 'green', { expires: 180 });
-                                    changeTheme();
-                                }
-                            });
-                            break;
-                        case 'Orange Tag':
-                            themesTotal = themesTotal + 1;
-                            $('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme theme-orange"><div class="theme-name">Burnt Sunset</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
-                            $('#theme-select .theme.theme-orange').click(function() {
-                                if (Cookies.get('currentTheme') == 'orange') {
-                                    return;
-                                } else {
-                                    Cookies.set('currentTheme', 'orange', { expires: 180 });
-                                    changeTheme();
-                                }
-                            });
-                            break;
-                        case 'Pink Tag':
-                            themesTotal = themesTotal + 1;
-                            $('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme theme-pink"><div class="theme-name">Pink Candy</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
-                            $('#theme-select .theme.theme-pink').click(function() {
-                                if (Cookies.get('currentTheme') == 'pink') {
-                                    return;
-                                } else {
-                                    Cookies.set('currentTheme', 'pink', { expires: 180 });
-                                    changeTheme();
-                                }
-                            });
-                            break;
-                        case 'Black Tag':
-                            themesTotal = themesTotal + 1;
-                            $('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme theme-black"><div class="theme-name">Black Sky</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
-                            $('#theme-select .theme.theme-black').click(function() {
-                                if (Cookies.get('currentTheme') == 'black') {
-                                    return;
-                                } else {
-                                    Cookies.set('currentTheme', 'black', { expires: 180 });
-                                    changeTheme();
-                                }
-                            });
-                    }
-                });
+				
+				$.each(response.result, function(i, tag) {
+					for (i = 1; i < themeConfig.length - 1; i++;) {
+						if (tag == themeConfig[i].tagName) {
+							themesTotal = themesTotal + 1;
+							$('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme ' + themeConfig[i].selectClass + '"><div class="theme-name">' + themeConfig[i].themeName + '</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
+							$('#theme-select .theme.' + themeConfig[i].selectClass).click(function() {
+								if (Cookies.get('currentTheme') == themeConfig[i].themeCookie) {
+									return;
+								} else {
+									Cookies.set('currentTheme', themeConfig[i].themeCookie , { expires: 180 });
+									changeTheme();
+								}
+							});
+						}
+					}
+				});
                 
                 $('#theme-select .theme-wrapper').css({'width':'calc(100% / ' + themesTotal + ')'})
                 
