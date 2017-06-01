@@ -101,13 +101,14 @@ $('#theme-select').siblings('style').attr('id', 'csstheme');
 var themeTemplate = $('#csstheme').html();
 
 var changeTheme = function() {
-	for (i = 0; i < themeConfig.length; i++;) {
+	for (i = 0; i < themeConfig.length; i++) {
+	    console.log(i);
 		if (Cookies.get('currentTheme') == themeConfig[i].themeCookie) {
 			$('#csstheme').html(
 				themeTemplate
 				.replace(/color1/g, themeConfig[i].colorLight)
 				.replace(/color2/g, themeConfig[i].colorDark)
-				.replace(/background_url/g, themeConfig[i].background);
+				.replace(/background_url/g, themeConfig[i].background)
 			);
 			$('#theme-select .theme').removeClass('active');
 			$('#theme-select .theme.' + themeConfig[i].selectClass).addClass('active');
@@ -160,15 +161,17 @@ $.post(url, JSON.stringify(user_info), function(response) {
 			});
 			
 			$.each(response.result, function(i, tag) {
-				for (i = 1; i < themeConfig.length - 1; i++;) {
+				for (i = 1; i < themeConfig.length; i++) {
 					if (tag == themeConfig[i].tagName) {
 						themesTotal = themesTotal + 1;
 						$('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme ' + themeConfig[i].selectClass + '"><div class="theme-name">' + themeConfig[i].themeName + '</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
+						$('#theme-select .theme.' + themeConfig[i].selectClass).data('e', i);
 						$('#theme-select .theme.' + themeConfig[i].selectClass).click(function() {
-							if (Cookies.get('currentTheme') == themeConfig[i].themeCookie) {
+						    var e = $(this).data('e');
+							if (Cookies.get('currentTheme') == themeConfig[e].themeCookie) {
 								return;
 							} else {
-								Cookies.set('currentTheme', themeConfig[i].themeCookie , { expires: 180 });
+								Cookies.set('currentTheme', themeConfig[e].themeCookie , { expires: 180 });
 								changeTheme();
 							}
 						});
