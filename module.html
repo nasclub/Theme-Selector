@@ -133,6 +133,10 @@ $.post(url, JSON.stringify(user_info), function(response) {
 	var myID = response.result.user_id;
 	var loggedIn = response.result.logged_in;
 	var joinedSite = response.result.registered;
+		
+	if (loggedIn == true && joinedSite !== false) {
+		changeTheme();
+	}
 	
 	var tag_info = {
 		"jsonrpc": "2.0",
@@ -186,8 +190,6 @@ $.post(url, JSON.stringify(user_info), function(response) {
 				
 				if ($('#custom-nav').length && loggedIn == true && joinedSite !== false) {
 				    $('#custom-nav .custom-nav-wrapper .right').prepend('<div id="theme-select-trigger" style="height: 100%; line-height: 60px;"><a href="javascript:void(0)"><i class="material-icons" style="line-height: 60px;">compare</i> Change Theme</a></div>');
-				} else {
-				    $('.m_hmenu_v2 .front-widgets').prepend('<div id="theme-select-trigger"><a href="javascript:void(0)"><i class="material-icons">compare</i> Change Theme</a></div>');
 				}
 				
 				$('#theme-select-trigger > a').click(function() {
@@ -198,7 +200,7 @@ $.post(url, JSON.stringify(user_info), function(response) {
 				    $('#theme-select-shadow').hide();
 				    $('#theme-select').removeClass('open');
 				});
-				changeTheme();
+				
 			});
 			
 		}
