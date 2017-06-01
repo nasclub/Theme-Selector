@@ -129,78 +129,78 @@ $.post(url, JSON.stringify(user_info), function(response) {
 		console.log(response.error.message);
 	} else {
             
-        var myID = response.result.user_id;
-        var loggedIn = response.result.logged_in;
-        var joinedSite = response.result.registered;
-        
-        var tag_info = {
-        	"jsonrpc": "2.0",
-        	"id": Math.round(Math.random() * (999999 - 100000) + 100000),
-        	"method": "Tags.get",
-        	"params": {
-        	    "api_key": "c5550244e2427cd146f472df320d59a5b60311815b53fb9f",
-        	    "user_id": myID
-        	}
-        };
-        
-        $.post(url, JSON.stringify(tag_info), function(response) {
-            if (response.error) {
-                console.log(response.error.message);
-            } else {
-                
-                var themesTotal = 1;
-                
-                $('#theme-select .theme.theme-default').click(function() {
-                    if (Cookies.get('currentTheme') == 'default') {
-                        return;
-                    } else {
-                        Cookies.set('currentTheme', 'default', { expires: 180 });
-                        changeTheme();
-                    }
-                });
-				
-				$.each(response.result, function(i, tag) {
-					for (i = 1; i < themeConfig.length - 1; i++;) {
-						if (tag == themeConfig[i].tagName) {
-							themesTotal = themesTotal + 1;
-							$('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme ' + themeConfig[i].selectClass + '"><div class="theme-name">' + themeConfig[i].themeName + '</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
-							$('#theme-select .theme.' + themeConfig[i].selectClass).click(function() {
-								if (Cookies.get('currentTheme') == themeConfig[i].themeCookie) {
-									return;
-								} else {
-									Cookies.set('currentTheme', themeConfig[i].themeCookie , { expires: 180 });
-									changeTheme();
-								}
-							});
-						}
+	var myID = response.result.user_id;
+	var loggedIn = response.result.logged_in;
+	var joinedSite = response.result.registered;
+	
+	var tag_info = {
+		"jsonrpc": "2.0",
+		"id": Math.round(Math.random() * (999999 - 100000) + 100000),
+		"method": "Tags.get",
+		"params": {
+		    "api_key": "c5550244e2427cd146f472df320d59a5b60311815b53fb9f",
+		    "user_id": myID
+		}
+	};
+	
+	$.post(url, JSON.stringify(tag_info), function(response) {
+		if (response.error) {
+		    console.log(response.error.message);
+		} else {
+			
+			var themesTotal = 1;
+			
+			$('#theme-select .theme.theme-default').click(function() {
+			    if (Cookies.get('currentTheme') == 'default') {
+			        return;
+			    } else {
+			        Cookies.set('currentTheme', 'default', { expires: 180 });
+			        changeTheme();
+			    }
+			});
+			
+			$.each(response.result, function(i, tag) {
+				for (i = 1; i < themeConfig.length - 1; i++;) {
+					if (tag == themeConfig[i].tagName) {
+						themesTotal = themesTotal + 1;
+						$('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme ' + themeConfig[i].selectClass + '"><div class="theme-name">' + themeConfig[i].themeName + '</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
+						$('#theme-select .theme.' + themeConfig[i].selectClass).click(function() {
+							if (Cookies.get('currentTheme') == themeConfig[i].themeCookie) {
+								return;
+							} else {
+								Cookies.set('currentTheme', themeConfig[i].themeCookie , { expires: 180 });
+								changeTheme();
+							}
+						});
 					}
+				}
+			});
+			
+			$('#theme-select .theme-wrapper').css({'width':'calc(100% / ' + themesTotal + ')'})
+			
+			$(document).ready(function() {
+				$('#theme-select, #theme-select-shadow').prependTo('body');
+				
+				if ($('#custom-nav').length && loggedIn == true && joinedSite !== false) {
+				    $('#custom-nav .custom-nav-wrapper .right').prepend('<div id="theme-select-trigger" style="height: 100%; line-height: 60px;"><a href="javascript:void(0)"><i class="material-icons" style="line-height: 60px;">compare</i> Change Theme</a></div>');
+				} else {
+				    $('.m_hmenu_v2 .front-widgets').prepend('<div id="theme-select-trigger"><a href="javascript:void(0)"><i class="material-icons">compare</i> Change Theme</a></div>');
+				}
+				
+				$('#theme-select-trigger > a').click(function() {
+				    $('#theme-select-shadow').show();
+				    $('#theme-select').addClass('open');
 				});
-                
-                $('#theme-select .theme-wrapper').css({'width':'calc(100% / ' + themesTotal + ')'})
-                
-                $(document).ready(function() {
-                    $('#theme-select, #theme-select-shadow').prependTo('body');
-                    
-                    if ($('#custom-nav').length && loggedIn == true && joinedSite !== false) {
-                        $('#custom-nav .custom-nav-wrapper .right').prepend('<div id="theme-select-trigger" style="height: 100%; line-height: 60px;"><a href="javascript:void(0)"><i class="material-icons" style="line-height: 60px;">compare</i> Change Theme</a></div>');
-                    } else {
-                        $('.m_hmenu_v2 .front-widgets').prepend('<div id="theme-select-trigger"><a href="javascript:void(0)"><i class="material-icons">compare</i> Change Theme</a></div>');
-                    }
-                    
-                    $('#theme-select-trigger > a').click(function() {
-                        $('#theme-select-shadow').show();
-                        $('#theme-select').addClass('open');
-                    });
-                    $('#theme-select-shadow, #theme-select .close').click(function() {
-                        $('#theme-select-shadow').hide();
-                        $('#theme-select').removeClass('open');
-                    });
-                    changeTheme();
-                });
-                
-            }
-        });
-        
+				$('#theme-select-shadow, #theme-select .close').click(function() {
+				    $('#theme-select-shadow').hide();
+				    $('#theme-select').removeClass('open');
+				});
+				changeTheme();
+			});
+			
+		}
+	});
+	
 	}
 });
 
