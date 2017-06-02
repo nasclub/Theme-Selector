@@ -1,2 +1,6 @@
 # Theme-Selector
-Enables user to select themes for Nasclub.
+This HTML module enables logged in users to select different themes for Nasclub.
+
+# Current Themes
+
+# Configuration
