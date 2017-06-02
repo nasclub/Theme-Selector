@@ -136,6 +136,13 @@ $.post(url, JSON.stringify(user_info), function(response) {
 		
 	if (loggedIn == true && joinedSite !== false) {
 		changeTheme();
+	} else {
+		$('#csstheme').html(
+			themeTemplate
+			.replace(/color1/g, themeConfig[i].colorLight)
+			.replace(/color2/g, themeConfig[i].colorDark)
+			.replace(/background_url/g, themeConfig[i].background)
+		);
 	}
 	
 	var tag_info = {
