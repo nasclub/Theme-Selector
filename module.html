@@ -9,7 +9,7 @@
         </div>
         <div class="no-wrap">
             <div class="theme-wrapper">
-                <div class="theme theme-default">
+                <div class="theme theme-default" style="background-image: url(https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Default-min.jpg);">
                     <div class="theme-name">Default</div>
                     <div class="selected">
                         <div class="theme-chosen"><i class="material-icons">check_circle</i></div>
@@ -175,7 +175,7 @@ $.post(url, JSON.stringify(user_info), function(response) {
 				for (i = 1; i < themeConfig.length; i++) {
 					if (tag == themeConfig[i].tagName) {
 						themesTotal = themesTotal + 1;
-						$('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme ' + themeConfig[i].selectClass + '"><div class="theme-name">' + themeConfig[i].themeName + '</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
+						$('#theme-select .theme-select-wrapper .no-wrap').append('<div class="theme-wrapper"><div class="theme ' + themeConfig[i].selectClass + '" style="background-image: url(' + themeConfig[i].background + ');"><div class="theme-name">' + themeConfig[i].themeName + '</div><div class="selected"><div class="theme-chosen"><i class="material-icons">check_circle</i></div></div></div></div>');
 						$('#theme-select .theme.' + themeConfig[i].selectClass).data('e', i);
 						$('#theme-select .theme.' + themeConfig[i].selectClass).click(function() {
 						    var e = $(this).data('e');
