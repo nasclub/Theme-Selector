@@ -115,47 +115,6 @@ a:focus {
     background-image: url("background_url");
 }
 
-/*.container.with-header .container_header {*/
-/*    background-color: color1;*/
-/*}*/
-
-/*.container.with-footer .container_footer {*/
-/*    background-color: color1;*/
-/*}*/
-
-/*.container.with-footer .container_footer .footer_text_text {*/
-/*    color: color1;*/
-/*}*/
-
-/*.container.with-footer .container_footer .footer_text_text a {*/
-/*  color: color1;*/
-/*}*/
-
-/*.container .container_header {*/
-/*  background-color: color1;*/
-/*}*/
-
-/*.container .container_footer {*/
-/*  background-color: color1;*/
-/*}*/
-
-/*.container .container_body .container_left {*/
-/*  background-color: color1;*/
-/*}*/
-
-/*.container .container_body .container_right {*/
-/*  background-color: color1;*/
-/*}*/
-
-/*.module {*/
-/*  border-color: color1;*/
-/*}*/
-
-/*.container .module {*/
-/*  border-right-color: color1;*/
-/*  border-bottom-color: color1;*/
-/*}*/
-
 .element_smallbutton {
   border-color: color1;
   background-color: color1;
