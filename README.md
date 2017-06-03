@@ -9,6 +9,7 @@ This HTML module enables logged in users to select different themes for Nasclub.
 ### Change Log
 
 #### Theme Selector v1.0.0
+* Theme will no longer persist when logged out. Theme will always be default when not logged in.
 * Added a configuration array for easier changes all in one place.
 * Reworked into a more automated system built around the configuration array.
 * Removed redundant CSS.
