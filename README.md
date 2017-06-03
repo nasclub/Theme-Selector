@@ -28,7 +28,8 @@ Base module used as a concept for variable CSS reflecting theme selection.
 
 
 ### Configuration
-````
+
+```javascript
 {
 		"themeCookie": "purple",
 		"themeName": "Purple Cloud",
@@ -38,4 +39,4 @@ Base module used as a concept for variable CSS reflecting theme selection.
 		"colorDark": "#7b1fa2",
 		"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Purple-min.jpg"
 	}
-  ````
+  ```
