@@ -31,15 +31,29 @@ Base module used as a concept for variable CSS reflecting theme selection.
 
 Using JSON, we set up configuration objects within the `themeConfig` array. The system will pull data from the array and build the selector accoradingly.
 
-#### Configuration Object Example:
+#### Configuration JSON Example:
 ```javascript
 {
-	"themeCookie": "purple", // Value for the cookie, keep it simple.
-	"themeName": "Purple Cloud", // Name of the theme to be displayed on the selector.
-	"tagName": "Purple Tag", // Name of the user tag acquired from the store.
-	"selectClass": "theme-purple", // Class name for the selector, keep it similar, theme-color.
-	"colorLight": "#ab47bc", // Hex colour for the lighter tone.
-	"colorDark": "#7b1fa2", // Hex colour for the darker tone.
-	"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Purple-min.jpg" // URL for the background.
+	"themeCookie": "purple",
+	"themeName": "Purple Cloud",
+	"tagName": "Purple Tag",
+	"selectClass": "theme-purple",
+	"colorLight": "#ab47bc",
+	"colorDark": "#7b1fa2",
+	"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Purple-min.jpg"
 }
 ```
+
+`themeCookie`: Value assigned to the `currentTheme` cookie, keep the value simple but distinctive.
+
+`themeName`: Full name of the current theme to be displayed within the theme selector modal.
+
+`tagName`: Full name of the user tag created for that specific theme, acquired through the store.
+
+`selectClass`: Name of the class used for building the theme selector modal, keep all class names similar, usually `theme-` followed by the `themeCookie` value.
+
+`colorLight`: Hex colour for the lighter shade of the theme.
+
+`colorDark`: Hex colour for the darker shade of the theme.
+
+`background`: Url of the background image used for the theme.
