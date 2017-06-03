@@ -29,7 +29,9 @@ Base module used as a concept for variable CSS reflecting theme selection.
 
 ### Configuration
 
-Using JSON, we set up configuration objects within the `themeConfig` array. The system will pull data from the array and build the selector accoradingly.
+Using JSON, we set up configuration objects within the `themeConfig` array. The system will pull data from the array and build the selector accordingly.
+
+To add/remove/edit the themes, you need to find the `themeConfig` array and add/remove/edit a JSON object. The order of the JSON objects `{ ... }` will determine the order the theme selector will be built, from top to bottom -> left to right. Make sure each JSON object is separated with a `,` i.e. `themeConfig = [{ ... },{ ... },{ ... }];`.
 
 #### Configuration JSON Example:
 ```javascript
