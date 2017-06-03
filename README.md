@@ -31,12 +31,12 @@ Base module used as a concept for variable CSS reflecting theme selection.
 
 ```javascript
 {
-	"themeCookie": "purple",
-	"themeName": "Purple Cloud",
-	"tagName": "Purple Tag",
-	"selectClass": "theme-purple",
-	"colorLight": "#ab47bc",
-	"colorDark": "#7b1fa2",
-	"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Purple-min.jpg"
+	"themeCookie": "purple", // Value for the cookie, keep it simple.
+	"themeName": "Purple Cloud", // Name of the theme to be displayed on the selector.
+	"tagName": "Purple Tag", // Name of the user tag acquired from the store.
+	"selectClass": "theme-purple", // Class name for the selector, keep it similar, theme-color.
+	"colorLight": "#ab47bc", // Hex colour for the lighter tone.
+	"colorDark": "#7b1fa2", // Hex colour for the darker tone.
+	"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Purple-min.jpg" // URL for the background.
 }
 ```
