@@ -28,3 +28,14 @@ Base module used as a concept for variable CSS reflecting theme selection.
 
 
 ### Configuration
+````
+{
+		"themeCookie": "purple",
+		"themeName": "Purple Cloud",
+		"tagName": "Purple Tag",
+		"selectClass": "theme-purple",
+		"colorLight": "#ab47bc",
+		"colorDark": "#7b1fa2",
+		"background": "https://s3.amazonaws.com/files.enjin.com/851662/Theme_Backgrounds_Optimised/Theme-Purple-min.jpg"
+	}
+  ````
