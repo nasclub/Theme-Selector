@@ -29,6 +29,9 @@ Base module used as a concept for variable CSS reflecting theme selection.
 
 ### Configuration
 
+Using JSON, we set up configuration objects within the `themeConfig` array. The system will pull data from the array and build the selector accoradingly.
+
+#### Configuration Object Example:
 ```javascript
 {
 	"themeCookie": "purple", // Value for the cookie, keep it simple.
