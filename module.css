@@ -21,6 +21,10 @@
 
 
 
+.container.with-header .container_header {
+	border-bottom-color: color1;
+}
+
 .bbcode_quote {
     border-color: color1; /* Colour of the border of the quote */ /*CHANGE PER THEME*/
 }
@@ -42,20 +46,20 @@
 }
 
 .m_news .heading {
-  background-color: color1;
+	background-color: color1;
 }
 .m_news .heading:hover {
-  background-color: color2;
+	background-color: color2;
 }
 .contentbox .block-title {
-  background-color: transparent;
-  border-color: color1;
+	background-color: transparent;
+	border-color: color1;
 }
 
 .m_news.viewarticle .m_plugin_comment .block-title {
-  background-color: transparent; 
-  color: color1; 
-  border-bottom: 2px solid color1; 
+	background-color: transparent; 
+	color: color1; 
+	border-bottom: 2px solid color1; 
 }
 
 .contentbox .block-title {
